@@ -8,6 +8,7 @@ import uvicorn
 from openenv.core.env_server import create_web_interface_app
 
 from corp_env.models import CorpAction, CorpObservation
+from server.dashboard import mount_dashboard
 from server.environment import CorpEnvironment
 
 app = create_web_interface_app(
@@ -19,14 +20,7 @@ app = create_web_interface_app(
 )
 
 
-@app.get("/")
-def root():
-    return {"message": "CORP-ENV running"}
-
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+mount_dashboard(app)
 
 
 def main() -> None:

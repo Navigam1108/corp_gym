@@ -25,7 +25,7 @@ from server.swd import (
 )
 from server.tasks import TASKS
 from server.tasks.base import CorpTask
-from server.worker_client import call_worker_model
+from server.worker_client import call_model_stub, call_worker_model
 
 SAFETY_MAX_TURNS = 256
 
@@ -47,8 +47,9 @@ class CorpEnvironment(Environment[CorpAction, CorpObservation, State]):
 
     SUPPORTS_CONCURRENT_SESSIONS = True
 
-    def __init__(self) -> None:
+    def __init__(self, *, demo_mode: bool = False) -> None:
         super().__init__()
+        self.demo_mode = demo_mode
         self.task: CorpTask
         self.swd: Dict[str, Any] = {}
         self.turn = 0
@@ -304,13 +305,18 @@ class CorpEnvironment(Environment[CorpAction, CorpObservation, State]):
         if self.episode_metadata["consecutive_same_agent_calls"] > 1:
             reward -= 0.05 * self.episode_metadata["consecutive_same_agent_calls"]
 
-        out = call_worker_model(
-            slot,
-            task_text or "Provide your assessment.",
-            task_id=self.task.task_id,
-            episode_id=self._episode_id,
-            turn=self.turn,
-        )
+        if self.demo_mode:
+            out = call_model_stub(
+                slot, task_text or "Provide your assessment.", task_id=self.task.task_id
+            )
+        else:
+            out = call_worker_model(
+                slot,
+                task_text or "Provide your assessment.",
+                task_id=self.task.task_id,
+                episode_id=self._episode_id,
+                turn=self.turn,
+            )
         self._add_tokens(out)
         self.swd.setdefault("agent_reports", {})[key] = out
         self.swd["swd_version"] = int(self.swd.get("swd_version", 0)) + 1
@@ -489,6 +495,7 @@ class CorpEnvironment(Environment[CorpAction, CorpObservation, State]):
             verify_result,
             self.episode_metadata,
             self.task.description,
+            disable_judge=self.demo_mode,
         )
         ok, err = validate_swd_structure(self.swd)
         if not ok:
@@ -503,6 +510,8 @@ class CorpEnvironment(Environment[CorpAction, CorpObservation, State]):
         self, verify_result: Dict[str, bool], score: float
     ) -> None:
         """Write per-worker + master episode summaries to the memory store."""
+        if self.demo_mode:
+            return
         try:
             pass_rate = (
                 sum(1 for v in verify_result.values() if v) / max(len(verify_result), 1)

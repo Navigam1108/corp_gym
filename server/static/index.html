@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173e35" />
+    <meta
+      name="description"
+      content="Explore CORP-ENV: a shared workspace for corporate planning agents. Run scenarios, consult advisors, and evaluate decisions."
+    />
+    <title>CORP-ENV · Decision workspace</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23173e35'/%3E%3Cpath d='M11 11h7v7h-7zm11 0h7v7h-7zM11 22h7v7h-7zm11 0h7v7h-7z' fill='%23c7e6b9'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <script src="/assets/app.js" defer></script>
+  </head>
+  <body>
+    <svg
+      class="icon-library"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M4 3v17h17M8 15v-4m5 4V6m5 9v-7" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24">
+        <path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14m-6-6 6 6-6 6" />
+      </symbol>
+      <symbol id="i-external" viewBox="0 0 24 24">
+        <path
+          d="M14 4h6v6m0-6L10 14m0-10H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"
+        />
+      </symbol>
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="m8 5 11 7-11 7z" />
+      </symbol>
+      <symbol id="i-reset" viewBox="0 0 24 24">
+        <path d="M3 10a9 9 0 1 1 2 8M3 4v6h6" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6" />
+      </symbol>
+      <symbol id="i-launch" viewBox="0 0 24 24">
+        <path
+          d="M14 4c3-1 6-1 6-1s0 3-1 6l-7 7-5-5zM7 11H3l3-5h5m1 10v5l5-3v-7M4 16l-1 5 5-1"
+        />
+        <circle cx="15" cy="8" r="1.5" />
+      </symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24">
+        <path
+          d="M20 7H5a2 2 0 0 1 0-4h13v4M3 5v14a2 2 0 0 0 2 2h15V7m0 5h-6v5h6"
+        />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6" />
+      </symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24">
+        <rect x="8" y="8" width="12" height="13" rx="2" />
+        <path d="M16 8V3H3v13h5" />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24">
+        <circle cx="9" cy="7" r="3" />
+        <path
+          d="M3 21v-4a6 6 0 0 1 12 0v4m1-17a3 3 0 0 1 0 6m3 11v-4a6 6 0 0 0-2-4"
+        />
+      </symbol>
+      <symbol id="i-file" viewBox="0 0 24 24">
+        <path d="M14 3H5v18h14V8zm0 0v5h5M8 12h8m-8 4h6" />
+      </symbol>
+    </svg>
+    <a class="skip-link" href="#main">Skip to workspace</a>
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="CORP-ENV home"
+        ><span class="brand-mark"
+          ><svg class="icon"><use href="#i-grid" /></svg></span
+        ><span
+          >CORP<span class="brand-light">-ENV</span
+          ><small>THE DECISION LAB</small></span
+        ></a
+      >
+      <div class="sidebar-label">ENVIRONMENT</div>
+      <nav aria-label="Main navigation">
+        <button class="nav-item active" data-view="workspace">
+          <svg class="icon"><use href="#i-grid" /></svg>Workspace<span
+            class="nav-dot"
+          ></span>
+        </button>
+        <button class="nav-item" data-view="benchmarks">
+          <svg class="icon"><use href="#i-chart" /></svg>Benchmarks
+        </button>
+        <a class="nav-item" href="/docs" target="_blank" rel="noopener"
+          ><svg class="icon"><use href="#i-code" /></svg>API reference<svg
+            class="icon nav-external"
+          >
+            <use href="#i-external" /></svg
+        ></a>
+      </nav>
+      <div class="sidebar-note">
+        <div class="note-symbol">↗</div>
+        <h3>Decisions have layers.</h3>
+        <p>
+          Consult your advisors.<br />Resolve the trade-offs.<br />Make the
+          call.
+        </p>
+        <span>Built on OpenEnv</span>
+      </div>
+      <div class="sidebar-bottom">
+        <a
+          href="https://github.com/Navigam1108/corp_gym"
+          target="_blank"
+          rel="noopener"
+          >Source on GitHub<svg class="icon"><use href="#i-external" /></svg
+        ></a>
+        <div class="connection">
+          <span class="status-dot" id="connection-dot"></span
+          ><span id="connection-text">Connecting to environment</span>
+        </div>
+        <div class="sidebar-version">
+          CORP-ENV <span>v0.2 / Research preview</span>
+        </div>
+      </div>
+    </aside>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="breadcrumb">
+          Decision lab <span>/</span>
+          <strong id="breadcrumb-current">Workspace</strong>
+        </div>
+        <div class="topbar-right">
+          <span class="openenv-badge">OpenEnv</span
+          ><a
+            href="https://huggingface.co/spaces/Navigam/corp-env"
+            target="_blank"
+            rel="noopener"
+            >Hugging Face Space
+            <svg class="icon"><use href="#i-external" /></svg
+          ></a>
+        </div>
+      </header>
+      <main id="main" tabindex="-1">
+        <section id="workspace-view">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">
+                <span></span> THE CORPORATE PLANNING PLAYGROUND
+              </div>
+              <h1>Decision workspace<span>.</span></h1>
+              <p>
+                Complex scenarios. Specialized advisors. One shared source of
+                truth.
+              </p>
+            </div>
+            <div class="heading-actions">
+              <button id="reset-button" class="button secondary">
+                <svg class="icon"><use href="#i-reset" /></svg>New episode</button
+              ><button id="walkthrough-button" class="button primary">
+                <svg class="icon"><use href="#i-play" /></svg
+                ><span>Run walkthrough</span>
+              </button>
+            </div>
+          </div>
+          <div class="section-caption">
+            <h2>Choose your scenario</h2>
+            <span>01 — EXPLORE THE ENVIRONMENT</span>
+          </div>
+          <div id="scenario-cards" class="scenario-grid" aria-label="Scenarios">
+            <div class="loading-placeholder">Loading scenarios…</div>
+          </div>
+          <div class="workspace-toolbar">
+            <div>
+              <span class="live-indicator"></span><strong>Live workspace</strong
+              ><span class="demo-badge">Demo workers</span>
+            </div>
+            <span class="session-label" id="episode-label"
+              >Starting an isolated episode…</span
+            >
+          </div>
+          <div class="metrics-grid" id="metrics" aria-live="polite"></div>
+          <div class="workspace-grid">
+            <div class="workspace-main">
+              <section class="panel brief-panel">
+                <div class="panel-heading">
+                  <span class="mini-label">YOUR BRIEF</span
+                  ><span id="role-badge" class="role-badge"></span>
+                </div>
+                <p id="scenario-description">
+                  Connecting to your decision environment…
+                </p>
+                <div
+                  id="phase-track"
+                  class="phase-track"
+                  aria-label="Episode phase"
+                ></div>
+              </section>
+              <section class="panel document-panel">
+                <div class="document-heading">
+                  <div>
+                    <svg class="icon"><use href="#i-file" /></svg>
+                    <h2>Shared workspace</h2>
+                    <span id="version-label" class="version-badge">v1</span>
+                  </div>
+                  <button
+                    id="export-button"
+                    class="icon-button"
+                    title="Download episode JSON"
+                    aria-label="Download episode JSON"
+                  >
+                    <svg class="icon"><use href="#i-download" /></svg>
+                  </button>
+                </div>
+                <div class="tabs" role="tablist" aria-label="Workspace content">
+                  <button
+                    class="tab active"
+                    id="tab-overview"
+                    role="tab"
+                    aria-controls="workspace-content"
+                    aria-selected="true"
+                    data-tab="overview"
+                  >
+                    Overview</button
+                  ><button
+                    class="tab"
+                    id="tab-reports"
+                    role="tab"
+                    aria-controls="workspace-content"
+                    aria-selected="false"
+                    data-tab="reports"
+                  >
+                    Advisor reports <span id="reports-count">0</span></button
+                  ><button
+                    class="tab"
+                    id="tab-activity"
+                    role="tab"
+                    aria-controls="workspace-content"
+                    aria-selected="false"
+                    data-tab="activity"
+                  >
+                    Activity <span id="activity-count">0</span></button
+                  ><button
+                    class="tab code-tab"
+                    id="tab-json"
+                    role="tab"
+                    aria-controls="workspace-content"
+                    aria-selected="false"
+                    data-tab="json"
+                  >
+                    <svg class="icon"><use href="#i-code" /></svg>JSON
+                  </button>
+                </div>
+                <div
+                  id="workspace-content"
+                  class="workspace-content"
+                  role="tabpanel"
+                  aria-labelledby="tab-overview"
+                ></div>
+              </section>
+              <div class="demo-explanation">
+                <span class="info-circle">i</span>
+                <p>
+                  You're in demo mode. Advisors return deterministic sample
+                  reports; the LLM judge is disabled. The API supports your
+                  configured models.
+                </p>
+                <a href="/web/" target="_blank" rel="noopener"
+                  >OpenEnv playground <span>↗</span></a
+                >
+              </div>
+            </div>
+            <div class="workspace-aside">
+              <section class="panel action-panel">
+                <div class="panel-heading">
+                  <h2>Make your next move</h2>
+                  <span class="step-tag">ACTION</span>
+                </div>
+                <form id="action-form">
+                  <label for="action-type">Action</label
+                  ><select id="action-type" name="action_type">
+                    <option value="delegate">Consult an advisor</option>
+                    <option value="log_reasoning">Log reasoning</option>
+                    <option value="log_decision">Log a decision</option>
+                    <option value="log_conflict">Identify a conflict</option>
+                    <option value="log_resolution">Resolve a conflict</option>
+                    <option value="advance_phase">Advance phase</option>
+                    <option value="query_swd">Query workspace</option>
+                    <option value="update_swd">
+                      Edit workspace (JSON Patch)
+                    </option>
+                    <option value="finalize">Finalize recommendation</option>
+                  </select>
+                  <div id="advisor-field">
+                    <label for="agent-id">Advisor</label
+                    ><select id="agent-id" name="agent_id"></select>
+                  </div>
+                  <div id="phase-field" hidden>
+                    <label for="phase-select">Next phase</label
+                    ><select id="phase-select">
+                      <option value="analysis">Analysis</option>
+                      <option value="decision">Decision</option>
+                      <option value="execution">Execution</option>
+                    </select>
+                  </div>
+                  <div id="payload-field">
+                    <div class="label-row">
+                      <label for="action-payload" id="payload-label"
+                        >Your request</label
+                      ><button
+                        type="button"
+                        id="example-button"
+                        class="text-button"
+                      >
+                        Use example ↗
+                      </button>
+                    </div>
+                    <textarea
+                      id="action-payload"
+                      name="payload"
+                      rows="4"
+                      maxlength="16000"
+                      required
+                      placeholder="Ask for an assessment, constraints, or a recommendation…"
+                    ></textarea>
+                  </div>
+                  <p id="action-help" class="field-help">
+                    The advisor's report will be added to your workspace.
+                  </p>
+                  <button
+                    type="submit"
+                    id="submit-button"
+                    class="button primary submit-button"
+                  >
+                    <span>Send action</span
+                    ><svg class="icon"><use href="#i-arrow" /></svg>
+                  </button>
+                </form>
+                <div class="next-step">
+                  <span class="mini-label">SUGGESTED NEXT STEP</span>
+                  <p id="next-step-hint">
+                    Consult your advisor to gather evidence.
+                  </p>
+                </div>
+              </section>
+              <section class="panel milestones-panel">
+                <div class="panel-heading">
+                  <h2>Milestones</h2>
+                  <span id="milestone-count" class="muted">0 / 2</span>
+                </div>
+                <div id="milestones"></div>
+              </section>
+            </div>
+          </div>
+        </section>
+        <section id="benchmarks-view" hidden>
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> MEASURE WHAT CHANGES</div>
+              <h1>From baseline to better<span>.</span></h1>
+              <p>
+                Saved evaluation results for Qwen 2.5-7B Instruct across three
+                planning scenarios.
+              </p>
+            </div>
+            <a
+              class="button secondary"
+              href="https://github.com/Navigam1108/corp_gym/tree/main/results/model_compare_qwen25_fresh_all3_ep5"
+              target="_blank"
+              rel="noopener"
+              >View evaluation data<svg class="icon">
+                <use href="#i-external" /></svg
+            ></a>
+          </div>
+          <div class="benchmark-note">
+            <svg class="icon"><use href="#i-chart" /></svg>
+            <div>
+              <strong>5 episodes per scenario, per stage</strong>
+              <p>
+                Historical experiment results from this repository. These are
+                separate from the demo episode you run in the workspace.
+              </p>
+            </div>
+          </div>
+          <div id="benchmark-charts" class="benchmark-grid"></div>
+          <section class="panel benchmark-table-panel">
+            <div class="panel-heading">
+              <h2>The full picture</h2>
+              <span class="muted">Base → SFT → RLVR</span>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Scenario</th>
+                    <th>Stage</th>
+                    <th>Terminal reward</th>
+                    <th>Verifier pass rate</th>
+                    <th>Success rate</th>
+                    <th>Invalid actions</th>
+                  </tr>
+                </thead>
+                <tbody id="benchmark-table"></tbody>
+              </table>
+            </div>
+          </section>
+          <p class="benchmark-footnote">
+            Terminal reward combines completion, workspace coherence,
+            milestones, reasoning, and the optional LLM judge. Success and
+            verifier pass rates are distinct metrics.
+          </p>
+        </section>
+        <footer class="page-footer">
+          <span>Built for the decisions between the obvious answers.</span
+          ><span
+            >CORP-ENV <span class="footer-separator">/</span> Shared workspace
+            governance</span
+          >
+        </footer>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use the dashboard. The
+        <a href="/docs">API documentation</a> is also available.
+      </p></noscript
+    >
+  </body>
+</html>

@@ -119,6 +119,21 @@ A great environment has a reward function that:
 
 ## Quick Start
 
+The Space opens into a custom decision dashboard at `/`. Choose a scenario,
+consult advisors, record reasoning and conflicts, or click **Run walkthrough**
+to follow a complete example. The dashboard includes milestones, per-action
+rewards, verifier results, advisor reports, the SWD JSON, episode downloads,
+and historical Qwen 2.5-7B benchmarks.
+
+Dashboard episodes are isolated per browser session and expire after one hour
+of inactivity. They use deterministic demo workers, disable the LLM judge,
+and do not write to training memory. The benchmark view uses the saved
+five-episode results in `results/model_compare_qwen25_fresh_all3_ep5/`.
+
+The original OpenEnv playground remains at `/web/`, API documentation at
+`/docs`, and the existing `/reset`, `/step`, `/ws`, and `/health` endpoints
+remain available for training clients and configured model workers.
+
 ```bash
 # Using uv
 uv venv && uv sync

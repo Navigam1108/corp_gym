@@ -120,6 +120,8 @@ def compute_reward(
     verify_result: Dict[str, bool],
     episode_metadata: Dict[str, Any],
     task_goal: str,
+    *,
+    disable_judge: bool = False,
 ) -> float:
     """
     Weighted reward in roughly [-1, 1] after penalties (guide Part 2).
@@ -151,7 +153,7 @@ def compute_reward(
     reasoning_score = min(len(unique_turns) / 5.0, 1.0)
 
     llm_score = 0.0
-    if episode_metadata.get("finalized"):
+    if episode_metadata.get("finalized") and not disable_judge:
         llm_score = call_llm_judge(swd, task_goal)
 
     raw = (

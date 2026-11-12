@@ -53,8 +53,21 @@ def _is_stub_mode() -> bool:
     return os.getenv("CORP_STUB_WORKERS", "").lower() in ("1", "true", "yes")
 
 
-def call_model_stub(slot: AgentSlot, task_description: str) -> str:
-    base = _STUB_OUTPUTS.get(
+def call_model_stub(
+    slot: AgentSlot, task_description: str, *, task_id: Optional[str] = None
+) -> str:
+    demo_reports = {
+        "m1_budget_reallocation": {
+            "dev": "ENGINEERING ASSESSMENT: GPU cluster access is the bottleneck for the next training milestone. Prioritize the highest-value experiment and start with a constrained compute block. Expand only after measuring utilization and throughput. TRADE-OFF: a smaller allocation delays parallel experiments, but protects the essential training run.",
+            "finance": "FINANCE ASSESSMENT: The compute plan must stay within the approved budget and preserve cash runway. A large upfront GPU commitment increases burn before results are demonstrated. RECOMMENDATION: cap phase-one spend, review utilization and costs weekly, and require finance approval before expanding capacity.",
+        },
+        "h1_acquisition_defence": {
+            "dev": "CTO ASSESSMENT: Our stack is approximately 18 months ahead; the acquirer cannot replicate the technical moat quickly. An opening counter around 3.5x valuation recognizes this leverage. RISK: an extended IP lock-up limits our future options, and a prolonged process may erode the team that creates the moat.",
+            "finance": "CFO ASSESSMENT: Cash runway is approximately seven months at the current burn rate. The board is unlikely to support a 3.5x ask; around 2.6x is the realistic ceiling without new financing. RECOMMENDATION: keep negotiations time-bound and acknowledge cash constraints in the counter-offer.",
+            "hr": "CHRO ASSESSMENT: Key engineers have competing offers. Retention risk reaches approximately 60% if the process exceeds 90 days without incentives. RECOMMENDATION: commit to a near-term deadline, communicate role continuity, and put retention incentives in place before uncertainty drives departures.",
+        },
+    }
+    base = demo_reports.get(task_id, {}).get(slot.family) or _STUB_OUTPUTS.get(
         slot.family,
         f"{slot.title} acknowledges: {task_description[:200]}",
     )

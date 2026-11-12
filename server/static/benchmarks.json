@@ -1,0 +1,110 @@
+[
+  {
+    "model_stage": "base-qwen2.5-7b-fresh-ep5",
+    "task_id": "e1_launch_readiness",
+    "episodes": 5.0,
+    "avg_terminal_reward": 0.91,
+    "avg_total_reward": 1.542,
+    "avg_verifier_pass_rate": 1.0,
+    "success_rate": 1.0,
+    "avg_invalid_action_rate": 0.0,
+    "avg_steps": 3.8,
+    "stage": "Base"
+  },
+  {
+    "model_stage": "base-qwen2.5-7b-fresh-ep5",
+    "task_id": "h1_acquisition_defence",
+    "episodes": 5.0,
+    "avg_terminal_reward": 0.761333,
+    "avg_total_reward": 2.333333,
+    "avg_verifier_pass_rate": 0.666667,
+    "success_rate": 0.0,
+    "avg_invalid_action_rate": 0.0,
+    "avg_steps": 7.8,
+    "stage": "Base"
+  },
+  {
+    "model_stage": "base-qwen2.5-7b-fresh-ep5",
+    "task_id": "m1_budget_reallocation",
+    "episodes": 5.0,
+    "avg_terminal_reward": 0.706667,
+    "avg_total_reward": 1.702667,
+    "avg_verifier_pass_rate": 0.533333,
+    "success_rate": 0.0,
+    "avg_invalid_action_rate": 0.0,
+    "avg_steps": 5.4,
+    "stage": "Base"
+  },
+  {
+    "model_stage": "sft-qwen2.5-7b-fresh-ep5",
+    "task_id": "e1_launch_readiness",
+    "episodes": 5.0,
+    "avg_terminal_reward": 0.91,
+    "avg_total_reward": 1.58,
+    "avg_verifier_pass_rate": 1.0,
+    "success_rate": 1.0,
+    "avg_invalid_action_rate": 0.0,
+    "avg_steps": 4.0,
+    "stage": "SFT"
+  },
+  {
+    "model_stage": "sft-qwen2.5-7b-fresh-ep5",
+    "task_id": "h1_acquisition_defence",
+    "episodes": 5.0,
+    "avg_terminal_reward": 0.8825,
+    "avg_total_reward": 3.2345,
+    "avg_verifier_pass_rate": 0.75,
+    "success_rate": 0.0,
+    "avg_invalid_action_rate": 0.0,
+    "avg_steps": 11.8,
+    "stage": "SFT"
+  },
+  {
+    "model_stage": "sft-qwen2.5-7b-fresh-ep5",
+    "task_id": "m1_budget_reallocation",
+    "episodes": 5.0,
+    "avg_terminal_reward": 0.943333,
+    "avg_total_reward": 2.093333,
+    "avg_verifier_pass_rate": 1.0,
+    "success_rate": 1.0,
+    "avg_invalid_action_rate": 0.0,
+    "avg_steps": 6.0,
+    "stage": "SFT"
+  },
+  {
+    "model_stage": "rlvr-qwen2.5-7b-fresh-ep5",
+    "task_id": "e1_launch_readiness",
+    "episodes": 5.0,
+    "avg_terminal_reward": 0.91,
+    "avg_total_reward": 1.58,
+    "avg_verifier_pass_rate": 1.0,
+    "success_rate": 1.0,
+    "avg_invalid_action_rate": 0.0,
+    "avg_steps": 4.0,
+    "stage": "RLVR"
+  },
+  {
+    "model_stage": "rlvr-qwen2.5-7b-fresh-ep5",
+    "task_id": "h1_acquisition_defence",
+    "episodes": 5.0,
+    "avg_terminal_reward": 0.779167,
+    "avg_total_reward": 3.455167,
+    "avg_verifier_pass_rate": 0.683333,
+    "success_rate": 0.0,
+    "avg_invalid_action_rate": 0.013333,
+    "avg_steps": 13.4,
+    "stage": "RLVR"
+  },
+  {
+    "model_stage": "rlvr-qwen2.5-7b-fresh-ep5",
+    "task_id": "m1_budget_reallocation",
+    "episodes": 5.0,
+    "avg_terminal_reward": 0.931666,
+    "avg_total_reward": 2.079666,
+    "avg_verifier_pass_rate": 0.966667,
+    "success_rate": 0.8,
+    "avg_invalid_action_rate": 0.028571,
+    "avg_steps": 6.2,
+    "stage": "RLVR"
+  }
+]
